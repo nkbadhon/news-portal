@@ -21,36 +21,57 @@ function display(data) {
 
     }
 
-
-
-    // for (const datas of xyz) {
-    //     idOfEachNews.push(datas.category_id);
-    //     const li = document.createElement('li');
-    //     li.innerText = datas.category_name;
-    //     newsCatagoriesContainer.appendChild(li);
-
-    // }
-
 }
-
-newsPageGet();
-
-// document.getElementById('news-catagories').addEventListener('clicked', catagoriesClicked());
 
 function catagoriesClicked(id) {
-    let countryId = "(`0${id}`)";
-    fetch(`https://openapi.programming-hero.com/api/news/category/${countryId}`)
+    const url = `https://openapi.programming-hero.com/api/news/category/0${id}`;
+    fetch(url)
         .then(res => res.json())
-        .then(data => console.log(data))
+        .then(data => displayNews(data.data))
+}
+
+function displayNews(abc) {
+    const newsShowContainer = document.getElementById('News-Div');
+    newsShowContainer.innerHTML = "";
+    for (const abcd of abc) {
+        console.log(abcd.title)
+        const newsPush = document.createElement('div');
+        newsPush.innerHTML = `
+        <div class=" border rounded-3 bg-light d-sm-flex  container my-3 h-25 ">
+        <div><img src="${abcd.image_url}" class="img-fluid" alt="">
+        </div>
+        <div class="pt-3 ps-4">
+            <h4>${abcd.title}</h4>
+            <p>${abcd.details}
+            </p>
+            <div>
+                <div class="d-flex justify-content-between">
+                    <div class="d-flex">
+                        <div class="w-25  h-25 m-3"> <img src="${abcd.author.img}" class="w-100 rounded-circle  h-100" alt=""></div>
+                        <div class=" m-3">
+                            <h6>${abcd.author.name}
+                            </h6>
+                            <p>${abcd.author.published_date}
+                            </p>
+                        </div>
+                    </div>
+                    <div class="d-flex m-3 ">
+                    <i class="fa-solid fa-eye p-2"></i>
+                        <h3 class="">${abcd.total_abcd}</h3>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+            `
+        newsShowContainer.appendChild(newsPush);
+    }
+
 }
 
 
 
-// // Getting news
-// function allNews() {
-//     fetch('https://openapi.programming-hero.com/api/news/category/01')
-//         .then(res => res.json())
-//         .then(news => console.log(news))
-// }
 
 // allNews();
+
+newsPageGet();
