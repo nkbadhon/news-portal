@@ -159,3 +159,7 @@ const SpinLoader = isloading => {
         loaderSection.classList.add('d-none');
     }
 }
+
+// By default it will show all news
+
+catagoriesClicked(08);
