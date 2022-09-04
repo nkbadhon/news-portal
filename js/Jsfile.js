@@ -113,7 +113,7 @@ function loadFullNews(id) {
 function newsToModal(modals) {
     const modalTitleContainer = document.getElementById('modalTitel');
     modalTitleContainer.innerText = "";
-    for (const modal of modals) {
+    modals.forEach(modal => {
         const modTitle = document.createElement('div');
         modTitle.innerHTML = `
         <div class=" border rounded-3 bg-light   container my-3" >
@@ -147,7 +147,7 @@ function newsToModal(modals) {
     </div>
         `
         modalTitleContainer.appendChild(modTitle);
-    }
+    })
 }
 
 const SpinLoader = isloading => {
