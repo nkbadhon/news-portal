@@ -53,34 +53,34 @@ function displayNews(abc) {
 
     const newsShowContainer = document.getElementById('News-Div');
     newsShowContainer.innerHTML = "";
-    for (const xyza of abc) {
+    for (const abcd of abc) {
         const newsPush = document.createElement('div');
         newsPush.innerHTML = `
         <div class=" border rounded-3 bg-light d-sm-flex  container my-3" >
-        <div><img src="${xyza.image_url}" class=" my-3" alt=""  style="height: 220px; width: 340px;">
+        <div><img src="${abcd.image_url}" class=" my-3" alt=""  style="height: 220px; width: 340px;">
         </div>
         <div class="pt-3 ps-4">
-            <h4>${xyza.title}</h4>
-            <p>${xyza.details.slice(0, 450)}...
+            <h4>${abcd.title}</h4>
+            <p>${abcd.details.slice(0, 450)}...
             </p>
             <div>
                 <div class="d-flex justify-content-between">
                     <div class="d-flex">
-                        <div class=" m-3" style="height: 40px; width:40px; "> <img src="${xyza.author.img}" class="w-100 rounded-circle  h-100" alt=""></div>
+                        <div class=" m-3" style="height: 40px; width:40px; "> <img src="${abcd.author.img}" class="w-100 rounded-circle  h-100" alt=""></div>
                         <div class=" m-3">
-                            <h6>Author: ${xyza.author.name ? xyza.author.name : "Author name is not available"}
+                            <h6>Author: ${abcd.author.name ? abcd.author.name : "Author name is not available"}
                             </h6>
-                            <p> Date of Publication: ${xyza.author.published_date ? xyza.author.published_date : "Publish date is not available"}
+                            <p> Date of Publication: ${abcd.author.published_date ? abcd.author.published_date : "Publish date is not available"}
                             </p>
                         </div>
                     </div>
                     <div class="d-flex m-3 ">
                     <i class="fa-solid fa-eye p-2"></i>
-                        <h3 class="">${xyza.total_view ? xyza.total_view : "Total View Is Not Available"}</h3>
+                        <h3 class="">${abcd.total_view ? abcd.total_view : "Total View Is Not Available"}</h3>
                     </div>
                     
                     <div class=" m-3">
-                    <button onclick="loadFullNews('${xyza._id}')" type="button" class="btn btn-warning" data-bs-toggle="modal" data-bs-target="#newsDetailsModal" >
+                    <button onclick="loadFullNews('${abcd._id}')" type="button" class="btn btn-warning" data-bs-toggle="modal" data-bs-target="#newsDetailsModal" >
                     Full News
                     </button>
                     </div>
