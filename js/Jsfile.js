@@ -24,6 +24,8 @@ function display(data) {
 }
 
 function catagoriesClicked(id) {
+    // SpinLoader 
+    SpinLoader(true);
     const url = `https://openapi.programming-hero.com/api/news/category/0${id}`;
     fetch(url)
         .then(res => res.json())
@@ -31,6 +33,23 @@ function catagoriesClicked(id) {
 }
 
 function displayNews(abc) {
+    console.log(abc.length)
+    const noFoundContainer = document.getElementById('noFound');
+    const totalNewsCount = document.getElementById('totalnews');
+    totalNewsCount.innerText = "";
+    if (abc.length == 0) {
+        noFoundContainer.classList.remove('d-none');
+    }
+    else {
+        noFoundContainer.classList.add('d-none');
+
+        const newH3 = document.createElement('h3');
+        newH3.innerHTML = `
+    <h3 class="text-center">Total ${abc.length} news in this section</h3>
+    `
+        totalNewsCount.appendChild(newH3);
+    }
+
     const newsShowContainer = document.getElementById('News-Div');
     newsShowContainer.innerHTML = "";
     for (const abcd of abc) {
@@ -42,7 +61,7 @@ function displayNews(abc) {
         </div>
         <div class="pt-3 ps-4">
             <h4>${abcd.title}</h4>
-            <p>${abcd.details.slice(0, 400)}...
+            <p>${abcd.details.slice(0, 450)}...
             </p>
             <div>
                 <div class="d-flex justify-content-between">
@@ -72,7 +91,7 @@ function displayNews(abc) {
             `
         newsShowContainer.appendChild(newsPush);
     }
-
+    SpinLoader(false);
 }
 
 // allNews();
@@ -127,5 +146,15 @@ function newsToModal(modals) {
     </div>
         `
         modalTitleContainer.appendChild(modTitle);
+    }
+}
+
+const SpinLoader = isloading => {
+    const loaderSection = document.getElementById('loader');
+    if (isloading) {
+        loaderSection.classList.remove('d-none');
+    }
+    else {
+        loaderSection.classList.add('d-none');
     }
 }
